@@ -28,7 +28,7 @@ if (coin == 1) {
         }
       }
     }
-  });
+  });;
   return slope
 }
 
