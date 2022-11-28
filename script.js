@@ -1,6 +1,12 @@
 //TODO: style the chart. Make the grid lines thicker and make it update the color of the line each time it is refreshed. 
+//      for colors of graph, just make an array of colors and access with a random number.
 //TODO: Style buttons and fix into a responsive div / modal
 //TODO: look into obfuscation.
+
+
+//TODO: Can add vertical shift to have users enter slope and vertical shift. Should be easy to implement. 
+
+
 
 
 let chart = document.getElementById("theChart").getContext("2d");
