@@ -10,6 +10,10 @@
 
 
 let chart = document.getElementById("theChart").getContext("2d");
+let slopeField = document.getElementById("slopeAnswer")
+let shiftField = document.getElementById("shiftAnswer")
+
+let shift = 0;
 let slope = 0;
 let chartData = [];
 let slopeAnswer
@@ -35,7 +39,8 @@ function randomNumber(min, max) {
 
 function refreshGraph() {
   currentChart.destroy();
-  let slope = randomNumber(1, 6); // 1 through 5
+  slope = randomNumber(1, 6); // 1 through 5
+  shift = randomNumber(-5,6); // -5 through 5
   let coin = randomNumber(1, 3); //1 or 2
   if (coin == 1) {
     slope -= slope * 2; //Make slope negative
@@ -52,23 +57,36 @@ function buildGraph(slope) {
       labels: [-2, -1, 0, 1, 2],
       datasets: [
         {
-          label: "",
-          data: [slope * -2, slope * -1, 0, slope, slope * 2],
-          borderWidth: 8,
+          label: "CapChart",
+          data: [slope * -2 + shift, slope * -1 + shift, 0 + shift, slope + shift, slope * 2 + shift],
+          borderWidth: 6,
         },
       ],
     },
+    options: {
+        layout: {
+            padding: 10
+        }
+    }
   });
 }
 
 function verify() {
-  const ans = document.getElementById("slopeAnswer").value;
-  if (ans == slopeAnswer) {
+  //Parse int in order for calculations to be made. 6/2 === 3
+  const ans = parseInt(document.getElementById("slopeAnswer").value);
+  console.log(ans)
+  if (ans === slopeAnswer) {
     alert("lets goo");
   } else {
-    alert("Meow meow meow");
+    slopeField.style.borderColor = "red"
+    shiftField.style.borderColor = "red"
+    slopeField.value = ""
+    shiftField.value = ""
+    refreshGraph();
   }
 }
 
 
 buildGraph(refreshGraph())
+
+
